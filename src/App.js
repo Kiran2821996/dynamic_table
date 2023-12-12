@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// src/components/App/App.js
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import staticData from './staticData';
+import Tables from './components/Table/Table';
+import Filter from './components/Filter/Filter';
 
-function App() {
+
+const App = () => {
+  const [filter, setFilter] = React.useState({ conditions: [] });
+
+  const handleFilterChange = (conditions) => {
+    setFilter({ conditions });
+  };
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='d-flex flex-column justify-content-center align-items-center w-100'>
+      <Filter  onFilterChange={handleFilterChange} />
+      <Tables  data={staticData} filter={filter} />
     </div>
   );
-}
+};
 
 export default App;
